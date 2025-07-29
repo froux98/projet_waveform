@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #ea4258;" data-bs-theme="light">
+    <div class="container" >
+        <a class="navbar-brand" href="{{ path ('home') }}">
+            <img src="{{ asset('pics/Capture d’écran_2025-06-10 091203.jpg') }}" alt="WaveForm" width="30" height="24" class="d-inline-block align-text-top">
+            WaveForm
+        </a>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0c">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path ('app_show_news') }}">News</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Genre
+                    </a>
+
+                    <ul class="dropdown-menu">
+                {% for genre in getGenres() %}
+                    <li>
+                    <a class="dropdown-item"
+                        href="{{ path ('app_show_genre', {'type': genre.type}) }}"> {{ genre.type }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+                <div class="justify-content-end">
+                    {% if app.user %}
+                        <p> Bienvenue {{ app.user.name }}</p>
+                        <a href="{{ path('app_logout') }}">Se Deconnecter</a>
+                    {% else %}
+                        <a href="{{ path('app_register') }}">S'inscrire</a>
+                        <a href="{{ path('app_login') }}">Se connecter</a>
+                    {% endif%}
+
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>

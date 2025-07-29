@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container mt-5">
+    <h1>{{ posts.title }}</h1>
+    <img src="{{ posts.pathPicPost }}"
+         alt="{{ posts.title }}">
+    <p> {{ posts.body }}</p>
+    <div class="d-flex justify-content-center">
+        {% include 'partials/socials.html.twig' %}
+    </div>
+    <div>
+        <p> {{ posts.TitleCenter}}</p>
+        <p> {{ posts.BodyCenter }}</p>
+    </div>
+
+    <div data-lazyloading-container="{{ path('app_next_comments', {'id': posts.id}) }}">
+        <div class="row" data-container-items>
+            {% for comment in comments %}
+                {% include 'partials/_loop_card_comment.html.twig' %}
+            {% endfor %}
+        </div>
+        {% if comments|length == 8 %}
+            <button class="btn btn-primary">Voir plus</button>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-6 col-md-12 mx-auto mb-5">
+        <h3> Un commentaire ?</h3>
+
+        {% form_theme commentForm 'bootstrap_5_horizontal_layout.html.twig' %}
+
+        {{ form_start(commentForm) }}
+            <div class="text-danger">{{ form_errors(commentForm) }}</div>
+        {{ form_end(commentForm) }}
+    </div>
+
+</div>
+    <h3 class="mt-5"> Retrouver les Dernieres Sorties Electro :</h3>
+    {% include 'partials/playlist.html.twig' %}
+
+{% endblock %}

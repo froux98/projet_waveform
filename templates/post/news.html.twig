@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %} News {% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        {% include 'partials/cardpost.html.twig' with {
+       } %}
+    </div>
+
+<div class="navigation justify-content-center">
+{{ knp_pagination_render(posts) }}
+</div>
+    <h3 class="mt-5"> Retrouver les Dernieres Sorties Electro :</h3>
+    {% include 'partials/playlist.html.twig' %}
+{% endblock %}

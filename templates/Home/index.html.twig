@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} WaveForm {% endblock %}
+
+{% block body %}
+
+<div class="container mt-3"></div>
+    {% include 'partials/carousel.html.twig'%}
+    <div class="d-flex">
+<div class="mt-3">
+    {% include 'partials/cardpost.html.twig' with {
+        'posts': lastPost
+    } %}
+</div>
+        <div class="col-md-4 mt-5">
+            <h3> Les dernieres News : </h3>
+            {% for post in titlePost %}
+            <ul>
+                <li>
+                    <a class="default-link" href="{{ path('app_show_post', {'id': post.id}) }}">
+                        {{ post.title }}
+                    </a>
+                </li>
+            </ul>
+            {% endfor %}
+            <div class="container-img">
+                <img src="{{ asset ('pics/518257557_18279432832272053_8960547773057586588_n.jpg') }}" alt="">
+
+            </div>
+
+        </div>
+
+    </div>
+    <h3 class="mt-2"> Retrouver les Dernieres Sorties Electro :</h3>
+    {% include 'partials/playlist.html.twig' %}
+{% endblock %}

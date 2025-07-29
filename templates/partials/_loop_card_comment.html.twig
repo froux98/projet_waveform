@@ -1,0 +1,7 @@
+<div class="card border-danger mb-5">
+    <div class="card-header">{{ comment.user.userName }}</div>
+    <div class="card-body">
+        <p class="card-text">{{ comment.body}}</p>
+    </div>
+    <p> Créer le : {{ comment.createdAt |date("m/d/Y") }}</p>
+</div>
