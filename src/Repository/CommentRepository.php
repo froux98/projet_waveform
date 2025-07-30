@@ -26,10 +26,12 @@ class CommentRepository extends ServiceEntityRepository
             ->setParameter('id', $id);
     }
 
-    public function getUserByComment(string $id): QueryBuilder
+    public function getLikeByComments() : QueryBuilder
     {
         return $this->createQueryBuilder('c')
-            ->join('c.user', 'u');
+            ->join('c.post', 'p')
+            ->join('c.likes', 'l');
+
     }
 
     //    /**

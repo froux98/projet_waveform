@@ -9,6 +9,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -40,14 +41,10 @@ class AddPostForm extends AbstractType
             ->add('TitleCenter', TextType::class, [
                 'label' => 'Titre Centre',
             ])
-//            ->add('user', EntityType::class, [
-//                'class' => User::class,
-//                'choice_label' => 'id',
-//            ])
-            ->add('genres', EntityType::class, [
-                'class' => Genre::class,
+
+            ->add('genres', CheckboxType::class, [
                 'choice_label' => 'type',
-                'multiple' => true,
+
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

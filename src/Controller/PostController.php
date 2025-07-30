@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Form\CommentsForm;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
 
 
 final class PostController extends AbstractController
@@ -24,6 +26,8 @@ final class PostController extends AbstractController
         CommentRepository $commentRepository,
         Request $request,
         EntityManagerInterface $entityManager,
+
+
     ): Response
     {
         $post = $postRepository->findOneBy(['id' => $id], ['CreatedAt' => 'DESC']);
@@ -31,6 +35,7 @@ final class PostController extends AbstractController
             return $this->redirectToRoute('not_found');
         }
         $comments = $commentRepository->findBy(['post' => $post ], ['createdAt' => 'DESC'], 8);
+        $like = $commentRepository->getLikeByComments();
 
         $user = $this->getUser();
         $comment = new Comment();
@@ -52,6 +57,7 @@ final class PostController extends AbstractController
             'posts' => $post,
             'users' => $user,
             'comments' => $comments,
+            'like' => $like,
             'commentForm' => $form->createView(),
         ]);
     }
@@ -80,4 +86,5 @@ final class PostController extends AbstractController
             'hideButton' => count($comments) < 8,
         ]);
     }
+
 }

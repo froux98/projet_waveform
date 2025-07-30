@@ -4,4 +4,14 @@
         <p class="card-text">{{ comment.body}}</p>
     </div>
     <p> Créer le : {{ comment.createdAt |date("m/d/Y") }}</p>
+    <div class="justify-content-between">
+        <p> Nombre de like : <span>{{ comment.likes | length }}</span></p>
+        <span class="cursor-pointer" data-like="{{ path('app_show_comment_like', {'id': comment.id}) }}">
+        {% if has_user_liked_comment(app.user, comment) %}
+            <i class="fa-solid fa-heart text-danger"></i>
+        {% else %}
+            <i class="fa-regular fa-heart" aria-hidden="true"></i>
+        {% endif %}
+        </span>
+    </div>
 </div>
