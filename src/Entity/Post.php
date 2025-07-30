@@ -18,7 +18,7 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1000)]
     private ?string $body = null;
 
     #[ORM\Column(length: 255)]
@@ -46,7 +46,7 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $LinkSocials = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1000)]
     private ?string $BodyCenter = null;
 
     #[ORM\Column(length: 255)]

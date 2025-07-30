@@ -22,16 +22,38 @@
                         href="{{ path ('app_show_genre', {'type': genre.type}) }}"> {{ genre.type }}</a>
                     </li>
                 {% endfor %}
-                </ul>
-                <div class="justify-content-end">
-                    {% if app.user %}
-                        <p> Bienvenue {{ app.user.userName }}</p>
-                        <a href="{{ path('app_logout') }}">Se Deconnecter</a>
-                    {% else %}
-                        <a href="{{ path('app_register') }}">S'inscrire</a>
-                        <a href="{{ path('app_login') }}">Se connecter</a>
-                    {% endif%}
-
+                    </ul>
+                    <div class="justify-content-end">
+                        <ul class="navbar-nav">
+                            {% if app.user is null %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">
+                                        Login
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_register') }}">
+                                        Register
+                                    </a>
+                                </li>
+                            {% else %}
+                                {#                            <li class="nav-item">#}
+                                {#                                <a class="nav-link" href="{{ path('app_user_index', {'name': app.user.name}) }}">#}
+                                {#                                    Mon profil#}
+                                {#                                </a>#}
+                                {#                            </li>#}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('admin_posts') }}">
+                                        Admin category
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_logout') }}">
+                                        Se déconnecter
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
                 </div>
             </ul>
         </div>

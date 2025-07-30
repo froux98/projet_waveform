@@ -2,5 +2,48 @@
 
 {% block body %}
 
+
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre Principal</th>
+            <th scope="col">Photo Central</th>
+            <th scope="col">Contenu </th>
+            <th scope="col">Lien Instagram (ID)</th>
+            <th scope="col">Titre Milieu</th>
+            <th scope="col">2eme Contenu</th>
+            <th scope="col">Voir le Post </th>
+            <th scope="col">Modifier le Post</th>
+            <th scope="col">Supprimer le Post</th>
+        </tr>
+        {% for post in posts %}
+            <tbody>
+            <tr>
+                <th scope="row"> {{ post.id }}</th>
+                <td>{{ post.title }}</td>
+                <td>{{ post.pathPicPost }}</td>
+                <td>{{ post.body}}</td>
+                <td>{{ post.LinkSocials }}</td>
+                <td>{{ post.TitleCenter }}</td>
+                <td>{{ post.BodyCenter }}</td>
+                <td> <a href="{{ path('app_show_post', {'id': post.id}) }}">
+                        <i class="fa-solid fa-eye"></i>
+                    </a></td>
+                            <td> <a href="{{ path('admin_edit_post', {'id': post.id}) }}">
+                                    <i class="fa-solid fa-edit"></i>
+                                </a></td>
+                          <td> <a href="{{ path('admin_delete_post', {'id': post.id}) }}">
+                                  <i class="fa-solid fa-trash"></i>
+                               </a></td>
+            </tr>
+            </tbody>
+
+        {% endfor %}
+
+    </table>
+
+    <div class="navigation justify-content-center">
+        {{ knp_pagination_render(posts) }}
+    </div>
 {% endblock %}
 

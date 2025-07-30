@@ -37,7 +37,7 @@ class PostRepository extends ServiceEntityRepository
     public function getAll() : Query
     {
         return $this ->createQueryBuilder('g')
-            ->orderBy('g.id', 'ASC')
+            ->orderBy('g.CreatedAt', 'DESC')
             -> getQuery();
 
     }
