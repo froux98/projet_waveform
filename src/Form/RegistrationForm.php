@@ -12,10 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationForm extends AbstractType
 {
@@ -61,12 +58,12 @@ class RegistrationForm extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
+                    new IsTrue(
+                        message: 'You should agree to our terms.',
+                    ),
                 ],
             ])
-            ->add( 'path_pic_profile', Length::class, [
+            ->add( 'path_pic_profile', FileType::class, [
                 'label' => 'Photo de profil',
 
             ])
@@ -75,10 +72,7 @@ class RegistrationForm extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary mt-3',
                 ]
-            ])
-
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
