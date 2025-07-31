@@ -5,18 +5,19 @@
 {% block body %}
 <div class="container mt-5">
     <h1>{{ posts.title }}</h1>
-    <img src="{{ posts.pathPicPost }}"
+    <img class="mt-5"
+         src="{{ posts.pathPicPost }}"
          alt="{{ posts.title }}">
-    <p> {{ posts.body }}</p>
-    <div class="d-flex justify-content-center">
+    <p class="body-text mt-5"> {{ posts.body }}</p>
+    <div class="d-flex justify-content-center mt-5">
         {% include 'partials/socials.html.twig' %}
     </div>
     <div>
-        <p> {{ posts.TitleCenter}}</p>
-        <p> {{ posts.BodyCenter }}</p>
+        <p class="titre-text"> {{ posts.TitleCenter}}</p>
+        <p class="body-text mt-2"> {{ posts.BodyCenter }}</p>
     </div>
-
-    <div data-lazyloading-container="{{ path('app_next_comments', {'id': posts.id}) }}">
+{% if app.user %}
+    <div class="mt-5" data-lazyloading-container="{{ path('app_next_comments', {'id': posts.id}) }}">
         <div class="row" data-container-items>
             {% for comment in comments %}
                 {% include 'partials/_loop_card_comment.html.twig' %}
@@ -26,17 +27,23 @@
             <button class="btn btn-primary">Voir plus</button>
         {% endif %}
     </div>
-
     <div class="col-lg-6 col-md-12 mx-auto mb-5">
         <h3> Un commentaire ?</h3>
-
         {{ form_start(commentForm) }}
-            <div class="text-danger">{{ form_errors(commentForm) }}</div>
+        <div class="text-danger">
+            {{ form_errors(commentForm) }}</div>
         {{ form_end(commentForm) }}
     </div>
-
+{% else %}
+    <div class="card">
+        <div class="card-body text-center">
+            <h2> Tu veux voir ou partager un commentaire ?</h2>
+            <h1><a href="{{ path ('app_login') }}"> Connecte-toi </a> <br>
+                <a href="{{ path ('app_register') }}">Creer un Compte</a></h1>
+        </div>
+    </div>
+{% endif %}
 </div>
     <h3 class="mt-5"> Retrouver les Dernieres Sorties Electro :</h3>
     {% include 'partials/playlist.html.twig' %}
-
 {% endblock %}

@@ -1,11 +1,10 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #ea4258;" data-bs-theme="light">
     <div class="container" >
         <a class="navbar-brand" href="{{ path ('home') }}">
-            <img src="{{ asset('pics/Capture d’écran_2025-06-10 091203.jpg') }}" alt="WaveForm" width="30" height="24" class="d-inline-block align-text-top">
-            WaveForm
+            <img src="{{ asset('pics/ChatGPT Image 31 juil. 2025, 16_15_58.png') }}" alt="WaveForm" class="d-inline-block align-text-top w-25">
         </a>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0c">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ path ('app_show_news') }}">News</a>
                 </li>
@@ -14,47 +13,49 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Genre
                     </a>
-
                     <ul class="dropdown-menu">
-                {% for genre in getGenres() %}
-                    <li>
-                    <a class="dropdown-item"
-                        href="{{ path ('app_show_genre', {'type': genre.type}) }}"> {{ genre.type }}</a>
-                    </li>
-                {% endfor %}
+                        {% for genre in getGenres() %}
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ path ('app_show_genre', {'type': genre.type}) }}"> {{ genre.type }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
-                    <div class="justify-content-end">
-                        <ul class="navbar-nav">
-                            {% if app.user is null %}
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">
-                                        Login
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_register') }}">
-                                        Register
-                                    </a>
-                                </li>
-                            {% else %}
-                                {#                            <li class="nav-item">#}
-                                {#                                <a class="nav-link" href="{{ path('app_user_index', {'name': app.user.name}) }}">#}
-                                {#                                    Mon profil#}
-                                {#                                </a>#}
-                                {#                            </li>#}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('admin_posts') }}">
-                                        Admin category
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_logout') }}">
-                                        Se déconnecter
-                                    </a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                </div>
+                </li>
+            </ul>
+        </div>
+        <div class="justify-content-end">
+            <ul class="navbar-nav">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin_posts') }}">
+                            Admin Panel
+                        </a>
+                    </li>
+                {% endif %}
+                {% if app.user is null %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">
+                            Register
+                        </a>
+                    </li>
+                {% endif %}
+                {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">
+                        Se déconnecter
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_profil') }}">
+                        Mon profil
+                    </a>
+                    {% endif %}
             </ul>
         </div>
     </div>

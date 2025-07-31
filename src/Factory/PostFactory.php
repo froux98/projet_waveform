@@ -34,13 +34,13 @@ final class PostFactory extends PersistentProxyObjectFactory
     {
         return [
             'CreatedAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
-            'body' => self::faker()->text(255),
+            'body' => self::faker()->text(1000),
             'pathPicPost' =>  "https://picsum.photos/" . faker()->numberBetween(300, 1000) . "/" . faker()->numberBetween(300, 1000),
             'title' => self::faker()->text(255),
             'user' => UserFactory::random(),
             'genres' => GenreFactory::randomRange(1, 3),
             'LinkSocials' => self::faker()->text(10),
-            'BodyCenter' => self::faker()->text(255),
+            'BodyCenter' => self::faker()->text(1000),
             'TitleCenter' => self::faker()->text(255),
         ];
     }

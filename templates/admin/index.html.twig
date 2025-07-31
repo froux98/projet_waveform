@@ -2,6 +2,18 @@
 
 {% block body %}
 
+    <h1> Liste des Posts</h1>
+
+    {% for message in app.flashes('post_success') %}
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Succès',
+                text: ' commentaire ajoute avec succes ',
+                confirmButtonColor: '#3085d6'
+            });
+        </script>
+    {% endfor %}
 
     <table class="table table-striped">
         <tr>
@@ -22,10 +34,10 @@
                 <th scope="row"> {{ post.id }}</th>
                 <td>{{ post.title }}</td>
                 <td>{{ post.pathPicPost }}</td>
-                <td>{{ post.body}}</td>
+                <td>{{ post.body |slice (0,100) ~ "..." }} </td>
                 <td>{{ post.LinkSocials }}</td>
                 <td>{{ post.TitleCenter }}</td>
-                <td>{{ post.BodyCenter }}</td>
+                <td>{{ post.BodyCenter |slice (0,100) ~ "..." }}</td>
                 <td> <a href="{{ path('app_show_post', {'id': post.id}) }}">
                         <i class="fa-solid fa-eye"></i>
                     </a></td>
@@ -37,13 +49,15 @@
                                </a></td>
             </tr>
             </tbody>
-
         {% endfor %}
-
     </table>
 
     <div class="navigation d-flex justify-content-center">
         {{ knp_pagination_render(posts) }}
     </div>
+
+    <button>
+        <a href="{{ path ('admin_add_post') }}"> Ajouter Un Post </a>
+    </button>
 {% endblock %}
 

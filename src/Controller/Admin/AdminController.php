@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Form\AddPostForm;
 use App\Form\RegistrationForm;
+use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Service\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,9 +46,7 @@ class AdminController extends AbstractController
         $post = new Post();
         $form = $this->createForm(AddPostForm::class, $post);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $filename = $fileUploaderService->uploadFile(
                 $form->get('pathPicPost')->getData(),
                 '/pathPicPost'
@@ -56,6 +56,7 @@ class AdminController extends AbstractController
             $post->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($post);
             $entityManager->flush();
+            $this->addFlash('post_success', 'Post créé avec succès.');
             return $this->redirectToRoute('admin_posts');
         }
         return $this->render('admin/addPost.html.twig', [
@@ -67,24 +68,34 @@ class AdminController extends AbstractController
         int $id,
         Request $request,
         EntityManagerInterface $entityManager,
-        PostRepository $postRepository
+        PostRepository $postRepository,
+        CommentRepository $commentRepository,
     ): Response
     {
         $post = $postRepository ->findOneBy (['id' => $id]);
-        $form = $this->createForm(AddPostForm::class, $id);
+        $form = $this->createForm(AddPostForm::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($post);
             $entityManager->flush();
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('admin_posts');
+
         }
-        return $this->render('admin/index.html.twig', [
+        return $this->render('admin/editPost.html.twig', [
             'addPostForm' => $form->createView(),
+            'posts' => $post,
+
         ]);
+
     }
 
     #[Route('/admin/game/{id}/delete', name: 'admin_delete_post',methods: ['GET', 'POST'])]
-    public function delete (PostRepository $postRepository, int $id, EntityManagerInterface $em): Response
+    public function delete (
+        PostRepository $postRepository,
+        int $id,
+        EntityManagerInterface $em,
+        CommentRepository $commentRepository
+    ): Response
     {
         $post = $postRepository ->findOneBy (['id' => $id]);
         $em -> remove($post);

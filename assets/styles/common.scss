@@ -4,6 +4,16 @@ body {
     color: $default-color;
 }
 
+.body-text {
+    font-family: "Merriweather", serif;
+    font-size : 1.5rem;
+}
+.titre-text {
+    font-family: "Playfair Display", serif;
+    font-size : 2rem;
+    font-weight: 700
+}
+
 .container-img {
     width: 100%;
     height: 250px;

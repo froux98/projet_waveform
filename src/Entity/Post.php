@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
@@ -18,7 +19,7 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 1000)]
+    #[ORM\Column(type : Types::TEXT)]
     private ?string $body = null;
 
     #[ORM\Column(length: 255)]
@@ -37,7 +38,7 @@ class Post
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', cascade: ['remove'])]
     private Collection $comments;
 
     #[ORM\Column]
@@ -46,7 +47,7 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $LinkSocials = null;
 
-    #[ORM\Column(length: 1000)]
+    #[ORM\Column(type : Types::TEXT)]
     private ?string $BodyCenter = null;
 
     #[ORM\Column(length: 255)]

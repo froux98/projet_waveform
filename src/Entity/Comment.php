@@ -27,7 +27,7 @@ class Comment
     /**
      * @var Collection<int, Like>
      */
-    #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'comment')]
+    #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'comment',cascade: ['remove'])]
     private Collection $likes;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

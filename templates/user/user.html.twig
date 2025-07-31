@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Mon Profil</h1>
+
+    <h3> Nom et Prenom : {{ user.name }}</h3>
+    <h3> Pseudo : {{ user.userName }}</h3>
+
+
+    <div class="card-group">
+{% for comment in app.user.comments %}
+<div class="card border-danger mb-5">
+    <div class="card-header">{{ comment.post.title }}</div>
+    <div class="card-body">
+        <p class="card-text">{{ comment.body}}</p>
+    </div>
+    <p> Créer le : {{ comment.createdAt |date("m/d/Y") }}</p>
+</div>
+    </div>
+{% endfor %}
+{% endblock %}
+
