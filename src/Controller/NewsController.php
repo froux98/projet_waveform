@@ -52,7 +52,7 @@ class NewsController extends AbstractController
     public function error(GenreRepository $genreRepository): Response
     {
         $genres = $genreRepository->findAll();
-        return $this->render('errors/404.html.twig', [
+        return $this->render('admin/404.html.twig', [
             'genres' => $genres,
         ]);
 

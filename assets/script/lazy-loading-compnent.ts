@@ -1,5 +1,6 @@
 import {ILazyLoadingElement} from "./i-lazy-loading-element";
 
+// Classe gérant le chargement progressif de contenu
 class LazyLoadingComponent {
 
     private readonly containerElements: HTMLElement = null;
@@ -7,6 +8,7 @@ class LazyLoadingComponent {
     private readonly button: HTMLButtonElement = null;
     private currentPage: number;
 
+    // Constructeur reçoit l'élément principal caractérisé par l'attribut data-lazyloading-container
     constructor(private mainElement: HTMLElement = null) {
         if (this.mainElement) {
             this.containerElements = mainElement.querySelector('[data-container-items]');

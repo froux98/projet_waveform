@@ -4,15 +4,15 @@
         <a class="col-md-6 card-link"
            href={{ path('app_show_post', {'id': post.id}) }}>
             <div>
-                <div class="container-img w-75">
-                    <img style="width: 25rem" src="{{ post.pathPicPost }}"
+                <div class="container-img">
+                    <img src="{{ post.pathPicPost }}"
                           alt="{{ post.title }}">
                 </div>
-                <h2 class="d-flex justify-content-center mt-4">{{ post.title }}
+                <h2 class="d-flex mt-3">{{ post.title }}
                 </h2>
 
                 <p class="mt-3 pb-5">
-                    {{ post.body |slice (0,100) ~ "..." }}
+                    {{ post.body |slice (0,200) ~ "..." }}
                 </p>
             </div>
 
