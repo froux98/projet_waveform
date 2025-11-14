@@ -21,5 +21,9 @@
 }
 
 .news-link {
-
+ color: #000000;
+    text-decoration: none;
+  &:hover {
+      color: $default-red;
+  }
 }

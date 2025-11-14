@@ -50,6 +50,8 @@ final class PostController extends AbstractController
             $comment->setCreatedAt(new \DateTime());
             $entityManager->persist($comment);
             $entityManager->flush();
+
+            return $this->redirectToRoute('app_show_post', ['id' => $post->getId()]);
         }
 
         return $this->render('post/index.html.twig', [

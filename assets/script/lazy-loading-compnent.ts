@@ -20,7 +20,7 @@ class LazyLoadingComponent {
             }
         }
     }
-
+    // Méthode privée : attache un gestionnaire au clic du bouton
     private addActionButton(): void {
         this.button.addEventListener('click', () => {
             this.currentPage++;

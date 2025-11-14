@@ -6,14 +6,13 @@
 {% form_theme registrationForm 'bootstrap_5_horizontal_layout.html.twig' %}
 
 {% block body %}
-<div class="container text-center">
-    <h1>S'inscrire</h1>
-
+<div>
+    <h1 class="text-center">S'inscrire</h1>
+<div>
     {{ form_start(registrationForm) }}
-
         {{ form_errors(registrationForm) }}
-
     {{ form_end(registrationForm) }}
+</div>
 </div>
 {% endblock %}
 

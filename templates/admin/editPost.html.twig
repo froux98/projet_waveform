@@ -3,6 +3,10 @@
     <div class="container">
         <h1 class="d-flex justify-content-center">Creer un Post</h1>
         {{ form_start(addPostForm) }}
+
+        <img src="{{ asset('') }}">
+        {{ form_row(addPostForm.pathPicPost) }}$
+
         {{ form_end(addPostForm) }}
     </div>
 

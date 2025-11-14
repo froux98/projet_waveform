@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container mt-5">
-    <h1>{{ posts.title }}</h1>
+    <h1 class="titre-text justify-content-center d-flex">{{ posts.title }}</h1>
     <img class="mt-5 w-100"
          src="{{ posts.pathPicPost }}"
          alt="{{ posts.title }}">
@@ -13,7 +13,7 @@
         {% include 'partials/socials.html.twig' %}
     </div>
     <div>
-        <p class="titre-text"> {{ posts.TitleCenter}}</p>
+        <p class="deux_titre_text"> {{ posts.TitleCenter}}</p>
         <p class="body-text mt-2"> {{ posts.BodyCenter }}</p>
     </div>
 {% if app.user %}
@@ -24,7 +24,7 @@
             {% endfor %}
         </div>
         {% if comments|length == 8 %}
-            <button class="btn btn-primary">Voir plus</button>
+            <button class="btn-waveform">Voir plus</button>
         {% endif %}
     </div>
     <div class="col-lg-6 col-md-12 mx-auto mb-5">
@@ -38,8 +38,8 @@
     <div class="card">
         <div class="card-body text-center">
             <h2> Tu veux voir ou partager un commentaire ?</h2>
-            <h1><a href="{{ path ('app_login') }}"> Connecte-toi </a> <br>
-                <a href="{{ path ('app_register') }}">Creer un Compte</a></h1>
+            <p><a href="{{ path ('app_login') }}"> Connecte-toi </a> <br>
+                <a href="{{ path ('app_register') }}">Creer un Compte</a></p>
         </div>
     </div>
 {% endif %}

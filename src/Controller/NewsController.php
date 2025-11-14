@@ -23,7 +23,7 @@ class NewsController extends AbstractController
         $listNews = $paginator->paginate(
             $postRepository->getAll(),
             $request->query->getInt('page', 1),
-            10);
+            8);
 
 
         return $this->render('post/news.html.twig', [

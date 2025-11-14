@@ -20,7 +20,7 @@ class CommentsForm extends AbstractType
             ->add('submit', SubmitType::class, [
                  'label' => 'Valider',
             'attr' => [
-                'class' => 'btn btn-primary mt-3',
+                'class' => 'btn-waveform',
             ]
         ]);
     }
