@@ -26,7 +26,6 @@ final class PostController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
 
-
     ): Response
     {
         $post = $postRepository->findOneBy(['id' => $id], ['CreatedAt' => 'DESC']);

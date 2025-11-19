@@ -12,7 +12,7 @@
         <p class="card-text">{{ comment.body}}</p>
     </div>
     <div>
-        <p> Nombre de like : <span>{{ comment.likes | length }}</span> </p>
-        <p class="d-flex justify-content-end"> Créer le : {{ comment.createdAt |date("m/d/Y") }}</p>
+        <p>  Nombre de like : <span>{{ comment.likes | length }}</span> </p>
+        <p class="d-flex justify-content-end"> Créer le : {{ comment.createdAt |date("d/m/Y") }}</p>
     </div>
 </div>

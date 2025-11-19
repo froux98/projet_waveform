@@ -1,5 +1,5 @@
-    function initButtonLike() : void {
-        // Sélectionne tous les éléments <p> ayant un attribut [data-like]
+function initButtonLike() : void {
+    // Sélectionne tous les éléments <p> ayant un attribut [data-like]
     const buttons: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('[data-like]');
     buttons.forEach((button) =>{
         // Récupère l'URL contenue dans l'attribut data-like (ex: pour l'appel AJAX)

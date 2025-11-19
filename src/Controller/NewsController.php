@@ -32,22 +32,6 @@ class NewsController extends AbstractController
         ]);
     }
 
-
-    public function list (PostRepository $postRepository, PaginatorInterface $paginator, Request $request): Response
-    {
-
-        $listNews = $paginator->paginate(
-            $postRepository->getAll(),
-            $request->query->getInt('page', 1),
-            10
-
-        );
-        return $this->render('post/news.html.twig', [
-            'listNews' => $listNews,
-
-        ]);
-    }
-
     #[Route('/404_not_found', name: 'not_found')]
     public function error(GenreRepository $genreRepository): Response
     {

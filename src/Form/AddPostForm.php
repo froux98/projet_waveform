@@ -55,7 +55,7 @@ class AddPostForm extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
                 'attr' => [
-                    'class' => 'btn-waveform',
+                    'class' => 'btn btn-danger',
                 ]
             ]);
     }

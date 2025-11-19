@@ -23,11 +23,7 @@ class RegistrationForm extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
-                'label_attr' => [
-
-                ]
             ])
-
             ->add('name', null, [
                 'label' => 'Nom & Prenom',
                 'attr' => [

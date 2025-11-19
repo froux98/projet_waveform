@@ -2,6 +2,8 @@
 body {
     background-color: $default-background-color;
     color: $default-color;
+    margin: 0;
+    padding: 0;
 }
 ul {
     list-style: none;
@@ -38,52 +40,64 @@ ul {
 
     }
 
-.select-card {
-    border: #0d6efd 1px solid;
-}
+    .select-card {
+        border: #0d6efd 1px solid;
+    }
 
 
     .cursor-pointer {
         cursor: pointer;
     }
 
-    .btn-waveform {
-        border: 2px solid #ea4258;
-        background-color: unset;
-        border-radius: 2px;
-        padding: 0.5rem 2rem;
-        color: #ea4258;
-        text-transform: uppercase;
-        transition-duration: 0.2s;
 
-        &:hover {
-            border: 2px solid transparent;
-            background-color: #ea4258;
-            color: #FFF;
-        }
+    #map {
+        width: 50%;
+        min-width: 300px;
+        height: 400px;
+        border-radius: 10px;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    .contact-form {
+        width: 45%;
+        min-width: 300px;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 }
-#map {
-    width: 50%;
-    min-width: 300px;
-    height: 400px;
-    border-radius: 10px;
-}
-.contact-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-}
 
-.contact-form {
-    width: 45%;
-    min-width: 300px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.table-red thead {
+    background: #dc3545;
+    color: white;
+}
+.table-red tbody tr:hover {
+    background: #ffe3e3 !important;
+}
+.btn-add {
+    background: #dc3545;
+    color: white !important;
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-weight: bold;
+}
+.btn-add:hover {
+    background: #b02a37;
+}
+.icon-action {
+    font-size: 1.3rem;
+    color: #dc3545;
+}
+.icon-action:hover {
+    color: #b02a37;
 }
 
 

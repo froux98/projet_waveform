@@ -1,9 +1,6 @@
 <?php
-
 declare(strict_types=1);
-
 namespace App\Controller\Admin;
-
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
@@ -19,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
-
 class AdminController extends AbstractController
 {
     #[Route('/admin/posts', name: 'admin_posts')]
@@ -69,7 +65,6 @@ class AdminController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         PostRepository $postRepository,
-        CommentRepository $commentRepository,
     ): Response
     {
         $post = $postRepository ->findOneBy (['id' => $id]);
@@ -94,7 +89,6 @@ class AdminController extends AbstractController
         PostRepository $postRepository,
         int $id,
         EntityManagerInterface $em,
-        CommentRepository $commentRepository
     ): Response
     {
         $post = $postRepository ->findOneBy (['id' => $id]);
@@ -104,8 +98,6 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_posts');
 
     }
-
-
 }
 
 

@@ -2,62 +2,58 @@
 
 {% block body %}
 
-    <h1 class="d-flex justify-content-center mt-3 mb-3"> Liste des Posts</h1>
+    <h1 class="d-flex justify-content-center mt-3 mb-4 text-danger fw-bold">Liste des Posts</h1>
 
     {% for message in app.flashes('post_success') %}
         <script>
             Swal.fire({
                 icon: 'success',
                 title: 'Succès',
-                text: ' commentaire ajoute avec succes ',
-                confirmButtonColor: '#3085d6'
+                text: 'Commentaire ajouté avec succès',
+                confirmButtonColor: '#dc3545'
             });
         </script>
     {% endfor %}
 
-    <table class="table table-striped">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titre Principal</th>
-            <th scope="col">Photo Central</th>
-            <th scope="col">Contenu </th>
-            <th scope="col">Lien Instagram (ID)</th>
-            <th scope="col">Titre Milieu</th>
-            <th scope="col">2eme Contenu</th>
-            <th scope="col">Voir le Post </th>
-            <th scope="col">Modifier le Post</th>
-            <th scope="col">Supprimer le Post</th>
-        </tr>
-        {% for post in posts %}
-            <tbody>
+    <div class="card shadow-sm p-4 mb-4 border-danger-subtle" style="border-radius: 16px;">
+        <table class="table table-striped table-red align-middle text-center">
+            <thead>
             <tr>
-                <th scope="row"> {{ post.id }}</th>
-                <td>{{ post.title }}</td>
-                <td>{{ post.pathPicPost }}</td>
-                <td>{{ post.body |slice (0,100) ~ "..." }} </td>
-                <td>{{ post.LinkSocials }}</td>
-                <td>{{ post.TitleCenter }}</td>
-                <td>{{ post.BodyCenter |slice (0,100) ~ "..." }}</td>
-                <td> <a href="{{ path('app_show_post', {'id': post.id}) }}">
-                        <i class="fa-solid fa-eye"></i>
-                    </a></td>
-                            <td> <a href="{{ path('admin_edit_post', {'id': post.id}) }}">
-                                    <i class="fa-solid fa-edit"></i>
-                                </a></td>
-                          <td> <a href="{{ path('admin_delete_post', {'id': post.id}) }}">
-                                  <i class="fa-solid fa-trash"></i>
-                               </a></td>
+                <th>Titre Principal</th>
+                <th>Photo</th>
+                <th>Contenu</th>
+                <th>Instagram ID</th>
+                <th>Titre Milieu</th>
+                <th>2e Contenu</th>
+                <th>Voir</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.pathPicPost }}</td>
+                    <td>{{ post.body|slice(0,100) ~ '...' }}</td>
+                    <td>{{ post.LinkSocials }}</td>
+                    <td>{{ post.TitleCenter }}</td>
+                    <td>{{ post.BodyCenter|slice(0,100) ~ '...' }}</td>
+                    <td><a href="{{ path('app_show_post', {'id': post.id}) }}" class="icon-action"><i class="fa-solid fa-eye"></i></a></td>
+                    <td><a href="{{ path('admin_edit_post', {'id': post.id}) }}" class="icon-action"><i class="fa-solid fa-edit"></i></a></td>
+                    <td><a href="{{ path('admin_delete_post', {'id': post.id}) }}" class="icon-action"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+            {% endfor %}
             </tbody>
-        {% endfor %}
-    </table>
+        </table>
+    </div>
 
-    <div class="navigation d-flex justify-content-center">
+    <div class="navigation d-flex justify-content-center mb-4">
         {{ knp_pagination_render(posts) }}
     </div>
 
-    <button>
-        <a href="{{ path ('admin_add_post') }}"> Ajouter Un Post </a>
-    </button>
-{% endblock %}
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('admin_add_post') }}" class="btn-add text-decoration-none">Ajouter un Post</a>
+    </div>
 
+{% endblock %}
